@@ -1,0 +1,1 @@
+Files crosswikis_wikipedia_p_e_m.txt and yago_p_e_m.txt should be placed here. Download them from https://polybox.ethz.ch/index.php/s/sH2JSB2c1OSj7yv . Password can be requested from octavian.ganea at inf dot ethz dot ch .
