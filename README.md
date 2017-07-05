@@ -1,5 +1,5 @@
 # deep-ed
-Source code for "Deep Joint Entity Disambiguation with Local Neural Attention"
+Source code for "Deep Joint Entity Disambiguation with Local Neural Attention", O-E. Ganea and T. Hofmann, accepted at EMNLP 2017.
 
 Code coming soon (by September). Meanwhile, we released the code and data (link below) to load the mention - entity index.
 
