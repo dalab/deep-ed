@@ -16,6 +16,7 @@ TODO
 
 
 2) Install torch libraries: cudnn, cutorch, [tds](https://github.com/torch/tds), gnuplot, xlua
+
 ```luarocks install lib_name```
 
 Check that each of these libraries can be imported in a torch terminal.
@@ -65,6 +66,7 @@ Verify the statistics of these files as shown in the header comments of gen_ace_
 
 
 11) Create training data for learning entity embeddings:
+
   i) From Wiki canonical pages: 
 
 ```th data_gen/gen_wiki_data/gen_ent_wiki_w_repr.lua -root_data_dir  $DATA_PATH```
@@ -196,7 +198,7 @@ Statistics, weights and scors will be written in the log_train_ed file. Plots of
 
 16) After training is terminated, one can re-load and test the best ED model using the command:
 
-```CUDA_VISIBLE_DEVICES=0 th ed/test/test_one_loaded_model.lua -root_data_dir $DATA_PATH -model global -test_one_model_file $ED_MODEL_FILENAME```
+```CUDA_VISIBLE_DEVICES=0 th ed/test/test_one_loaded_model.lua -root_data_dir $DATA_PATH -model global -ent_vecs_filename $ENTITY_VECS  -test_one_model_file $ED_MODEL_FILENAME```
 
 where $ED_MODEL_FILENAME is a file in $DATA_PATH/generated/ed_models/ .
 
