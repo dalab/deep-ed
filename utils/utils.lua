@@ -12,7 +12,7 @@ end
 function list_with_scores_to_str(list, scores)
   local str = ''
   for i,v in pairs(list) do
-    str = str .. list[i] 
+    str = str .. list[i] .. '[' .. string.format("%.2f", scores[i]) .. ']; '
   end
   return str
 end

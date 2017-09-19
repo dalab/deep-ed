@@ -120,7 +120,7 @@ hyp_ctxt_len = 10
 
 To run the embedding training on one GPU: mkdir $DATA_PATH/generated/ent_vecs; CUDA_VISIBLE_DEVICES=0 th entities/learn_e2v/learn_a.lua -root_data_dir $DATA_PATH |& tee log_train_entity_vecs
 
-Warning: This code is not sufficiently optimized to run at maximum speed and GPU usage. Sorry for the inconvenience. It only uses the main thread to load data and perform word embedding lookup. It can be made to run much faster.
+Warning: This code is not sufficiently optimized to run at maximum speed and GPU usage. Sorry for the inconvenience. It only uses the main thread to load data and perform word embedding lookup. It can be made to run much faster.  
 
 During training, you will see (in the log file log_train_entity_vecs) the validation score on the entity relatedness dataset of the current set of entity embeddings. After around 60 hours (this code is not optimized!), you will see no improvement and can thus stop the training script. Pick the set of saved entity vectors from the folder generated/ent_vecs/ corresponding to the best validation score on the entity relatedness dataset which is the sum of all validation metrics (the TOTAL VALIDATION column). In our paper, we reported in Table 1 the results on the test set corresponding to this best validation score. 
 
