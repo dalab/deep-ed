@@ -24,8 +24,8 @@ Check that each of these libraries can be imported in a torch terminal.
 3) Create a $DATA_PATH/ directoy. Create a directory $DATA_PATH/generated/ that will contain all generated files.
 
 
-4) Download data files needed for training and testing from [this link](https://drive.google.com/drive/u/2/folders/0Bx8d3azIm_ZcRGVkQS1WYkJtcU0)
-From the above link, download basic_data.zip, unzip it and place the basic_data directory in $DATA_PATH/. All generated files will be build based on files in this basic_data directory.
+4) Download data files needed for training and testing from [this link](https://drive.google.com/drive/u/2/folders/0Bx8d3azIm_ZcRGVkQS1WYkJtcU0).
+ Download basic_data.zip, unzip it and place the basic_data directory in $DATA_PATH/. All generated files will be build based on files in this basic_data directory.
 
 
 5) Download pre-trained Word2Vec vectors GoogleNews-vectors-negative300.bin.gz from https://code.google.com/archive/p/word2vec/.
@@ -56,7 +56,10 @@ Now we start creating additional data files needed in our pipeline:
 
 10) Generate all datasets for entity disambiguation: 
 
-```mkdir $DATA_PATH/generated/test_train_data/; th data_gen/gen_test_train_data/gen_all.lua -root_data_dir $DATA_PATH```
+```
+mkdir $DATA_PATH/generated/test_train_data/
+th data_gen/gen_test_train_data/gen_all.lua -root_data_dir $DATA_PATH
+```
  
 Verify the statistics of these files as shown in the header comments of gen_ace_msnbc_aquaint_csv.lua and gen_aida_test.lua .
 
@@ -145,7 +148,10 @@ hyp_ctxt_len = 10
 
 To run the embedding training on one GPU: 
 
-```mkdir $DATA_PATH/generated/ent_vecs; CUDA_VISIBLE_DEVICES=0 th entities/learn_e2v/learn_a.lua -root_data_dir $DATA_PATH |& tee log_train_entity_vecs```
+```
+mkdir $DATA_PATH/generated/ent_vecs
+CUDA_VISIBLE_DEVICES=0 th entities/learn_e2v/learn_a.lua -root_data_dir $DATA_PATH |& tee log_train_entity_vecs
+```
 
 Warning: This code is not sufficiently optimized to run at maximum speed and GPU usage. Sorry for the inconvenience. It only uses the main thread to load data and perform word embedding lookup. It can be made to run much faster.
 
@@ -172,7 +178,11 @@ We will call the name of this file with entity embeddings as $ENTITY_VECS. In ou
 
 Command to run the training: 
 
-```mkdir $DATA_PATH/generated/ed_models/; mkdir $DATA_PATH/generated/ed_models/training_plots/; CUDA_VISIBLE_DEVICES=0 th ed/ed.lua -root_data_dir $DATA_PATH -ent_vecs_filename $ENTITY_VECS -model 'global' |& tee log_train_ed```
+```
+mkdir $DATA_PATH/generated/ed_models/
+mkdir $DATA_PATH/generated/ed_models/training_plots/
+CUDA_VISIBLE_DEVICES=0 th ed/ed.lua -root_data_dir $DATA_PATH -ent_vecs_filename $ENTITY_VECS -model 'global' |& tee log_train_ed
+```
 
 Let it train for XX (TODO: fill) hours, until the validation accuracy does not improve any more or starts dropping. As we wrote in the paper, we stop learning if
 the validation F1 does not increase after 500 full epochs of the AIDA train dataset. Validation F1 can be following using the command:
