@@ -4,7 +4,7 @@
 
 ## Pre-trained entity embeddings
 
-Entity embeddings trained with our method using Word2Vec 300 dimensional pre-trained word vectors (GoogleNews-vectors-negative300.bin). They have norm 1 and are restricted only to entities appearing in the training, validation and test sets described in our paper. Available here: https://polybox.ethz.ch/index.php/s/sH2JSB2c1OSj7yv . Password can be requested from octavian.ganea at inf dot ethz dot ch .
+Entity embeddings trained with our method using Word2Vec 300 dimensional pre-trained word vectors (GoogleNews-vectors-negative300.bin). They have norm 1 and are restricted only to entities appearing in the training, validation and test sets described in our paper. Available [here](https://polybox.ethz.ch/index.php/s/sH2JSB2c1OSj7yv).
 
 ## Full set of annotations made by our best global model
 
@@ -198,7 +198,9 @@ Statistics, weights and scors will be written in the log_train_ed file. Plots of
 
 16) After training is terminated, one can re-load and test the best ED model using the command:
 
-```CUDA_VISIBLE_DEVICES=0 th ed/test/test_one_loaded_model.lua -root_data_dir $DATA_PATH -model global -ent_vecs_filename $ENTITY_VECS  -test_one_model_file $ED_MODEL_FILENAME```
+```
+CUDA_VISIBLE_DEVICES=0 th ed/test/test_one_loaded_model.lua -root_data_dir $DATA_PATH -model global -ent_vecs_filename $ENTITY_VECS  -test_one_model_file $ED_MODEL_FILENAME
+```
 
 where $ED_MODEL_FILENAME is a file in $DATA_PATH/generated/ed_models/ .
 
