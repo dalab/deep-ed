@@ -44,6 +44,9 @@ cmd:option('-entities', 'RLTD',
   'Set of entities for which we train embeddings: 4EX (tiny, for debug) | ' .. 
   'RLTD (restricted set) | ALL (all Wiki entities, too big to fit on a single GPU)')
 
+cmd:option('-init_vecs_title_words', true, 'whether the entity embeddings should be initialized with the average of ' .. 
+  'title word embeddings. Helps to speed up convergence speed of entity embeddings learning.')
+
 cmd:option('-loss', 'maxm', 'Loss function: nce (noise contrastive estimation) | ' .. 
   'neg (negative sampling) | is (importance sampling) | maxm (max-margin)')
 

@@ -12,6 +12,7 @@ if not opt then -- unit tests
   cmd:option('-num_words_per_ent', 100, 'num positive words per entity per iteration.')
   cmd:option('-num_neg_words', 25, 'num negative words in the partition function.')
   cmd:option('-loss', 'nce', 'nce | neg | is | maxm')
+  cmd:option('-init_vecs_title_words', false, 'whether the entity embeddings should be initialized with the average of title word embeddings. Helps to speed up convergence speed of entity embeddings learning.')
   opt = cmd:parse(arg or {})
   word_vecs_size = 5
   ent_vecs_size = word_vecs_size
@@ -29,6 +30,35 @@ if not unit_tests then
   -- Zero out unk_ent_thid vector for unknown entities.
   lookup_ent_vecs.weight[unk_ent_thid]:copy(torch.zeros(ent_vecs_size))
   
+  -- Init entity vectors with average of title word embeddings. 
+  -- This would help speed-up training.
+  if opt.init_vecs_title_words then
+    print('Init entity embeddings with average of title word vectors to speed up learning.')
+    for ent_thid = 1,get_total_num_ents() do
+      local init_ent_vec = torch.zeros(ent_vecs_size)
+      local ent_name = get_ent_name_from_wikiid(get_wikiid_from_thid(ent_thid))
+      words_plus_stop_words = split_in_words(ent_name)
+      local num_words_title = 0
+      for _,w in pairs(words_plus_stop_words) do
+        if contains_w(w) then -- Remove stop words.
+          init_ent_vec:add(w2vutils.M[get_id_from_word(w)]:float())
+          num_words_title = num_words_title + 1
+        end
+      end
+      
+      if num_words_title > 0 then
+        if num_words_title > 3 then
+          assert(init_ent_vec:norm() > 0, ent_name)
+        end
+        init_ent_vec:div(num_words_title)
+      end
+      
+      if init_ent_vec:norm() > 0 then
+        lookup_ent_vecs.weight[ent_thid]:copy(init_ent_vec)
+      end
+    end
+  end
+
   collectgarbage(); collectgarbage();
   print('    Done init.')
 end
