@@ -144,7 +144,7 @@ unig_power = 0.6
 entities = 'RLTD'
 loss = 'maxm'
 data = 'wiki-canonical-hyperlinks'
-num_passes_wiki_words = 400
+num_passes_wiki_words = 200
 hyp_ctxt_len = 10
 ```
 
@@ -157,22 +157,23 @@ CUDA_VISIBLE_DEVICES=0 th entities/learn_e2v/learn_a.lua -root_data_dir $DATA_PA
 
 Warning: This code is not sufficiently optimized to run at maximum speed and GPU usage. Sorry for the inconvenience. It only uses the main thread to load data and perform word embedding lookup. It can be made to run much faster.
 
-During training, you will see (in the log file log_train_entity_vecs) the validation score on the entity relatedness dataset of the current set of entity embeddings. After around 60 hours (this code is not optimized!), you will see no improvement and can thus stop the training script. Pick the set of saved entity vectors from the folder generated/ent_vecs/ corresponding to the best validation score on the entity relatedness dataset which is the sum of all validation metrics (the TOTAL VALIDATION column). In our paper, we reported in Table 1 the results on the test set corresponding to this best validation score. 
+During training, you will see (in the log file log_train_entity_vecs) the validation score on the entity relatedness dataset of the current set of entity embeddings. After around 24 hours (this code is not optimized!), you will see no improvement and can thus stop the training script. Pick the set of saved entity vectors from the folder generated/ent_vecs/ corresponding to the best validation score on the entity relatedness dataset which is the sum of all validation metrics (the TOTAL VALIDATION column). In our paper, we reported in Table 1 the results on the test set corresponding to this best validation score. 
 
 You should get some numbers similar to the following (may vary a little bit due to random initialization):
 
 ```
 Entity Relatedness quality measure:	
 measure    =	NDCG1	NDCG5	NDCG10	MAP	TOTAL VALIDATION	
-our (vald) =	0.683	0.641	0.674	0.620	2.617	
-our (test) =	0.638	0.610	0.641	0.577	
+our (vald) =	0.681	0.639	0.671	0.619	2.610	
+our (test) =	0.650	0.609	0.641	0.579	
 Yamada'16  =	0.59	0.56	0.59	0.52	
 WikiMW     =	0.54	0.52	0.55	0.48
-==> saving model to $DATA_PATH/generated/ent_vecs/ent_vecs__ep_228.t7	
+==> saving model to $DATA_PATH/generated/ent_vecs/ent_vecs__ep_69.t7	
 ```
 
-We will call the name of this file with entity embeddings as $ENTITY_VECS. In our case, it is 'ent_vecs__ep_228.t7'
+We will call the name of this file with entity embeddings as $ENTITY_VECS. In our case, it is 'ent_vecs__ep_69.t7'
 
+This code uses a simple initialization of entity embeddings based on the average of entities' title words (excluding stop words). This helps speed-up training and avoiding getting stuck in local minima. We found that using a random initialization might result in a slight quality decrease for ED only (up to 1%), requiring also a longer training time until reaching the same quality on entity relatedness (~60 hours).` 
 
 15) Run the training for the global/local ED neural network. Arguments file: ed/args.lua . To list all arguments: 
 
@@ -186,7 +187,7 @@ mkdir $DATA_PATH/generated/ed_models/training_plots/
 CUDA_VISIBLE_DEVICES=0 th ed/ed.lua -root_data_dir $DATA_PATH -ent_vecs_filename $ENTITY_VECS -model 'global' |& tee log_train_ed
 ```
 
-Let it train for XX (TODO: fill) hours, until the validation accuracy does not improve any more or starts dropping. As we wrote in the paper, we stop learning if
+Let it train for at least 48 hours (or 400 epochs as defined in our code), until the validation accuracy does not improve any more or starts dropping. As we wrote in the paper, we stop learning if
 the validation F1 does not increase after 500 full epochs of the AIDA train dataset. Validation F1 can be following using the command:
 
 ```cat log_train_ed | grep -A20 'Micro F1' | grep -A20 'aida-A'```
@@ -195,6 +196,7 @@ The best ED models will be saved in the folder generated/ed_models. This will on
 
 Statistics, weights and scors will be written in the log_train_ed file. Plots of micro F1 scores on all the validation and test set will be written in the folder $DATA_PATH/generated/ed_models/training_plots/ .
 
+Results variability: Results reported in our ED paper in Tables 3 and 4 are averaged over different runs of the ED neural architecture learning, but using the same set of entity embeddings. However, we found that the variance of ED results based on different trainings of entity embeddings might be a little higher, up to 0.5%.
 
 16) After training is terminated, one can re-load and test the best ED model using the command:
 
