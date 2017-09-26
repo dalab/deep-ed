@@ -6,9 +6,9 @@
 
 Entity embeddings trained with our method using Word2Vec 300 dimensional pre-trained word vectors (GoogleNews-vectors-negative300.bin). They have norm 1 and are restricted only to entities appearing in the training, validation and test sets described in our paper. Available [here](https://polybox.ethz.ch/index.php/s/sH2JSB2c1OSj7yv).
 
-## Full set of annotations made by our best global model
+## Full set of annotations made by our global model
 
-TODO
+See file our_system_annotations.txt . Best to visualize together with its color scheme in a bash terminal.
 
 ## How to run the system and reproduce our results
 
