@@ -37,7 +37,7 @@ Check that each of these libraries can be imported in a torch terminal.
 3) Create a $DATA_PATH/ directoy. Create a directory $DATA_PATH/generated/ that will contain all generated files.
 
 
-4) Download data files needed for training and testing from [this link](https://drive.google.com/drive/u/2/folders/0Bx8d3azIm_ZcRGVkQS1WYkJtcU0).
+4) Download data files needed for training and testing from [this link](https://drive.google.com/uc?id=0Bx8d3azIm_ZcbHMtVmRVc1o5TWM&export=download).
  Download basic_data.zip, unzip it and place the basic_data directory in $DATA_PATH/. All generated files will be build based on files in this basic_data directory.
 
 
