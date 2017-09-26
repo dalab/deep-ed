@@ -6,9 +6,21 @@
 
 Entity embeddings trained with our method using Word2Vec 300 dimensional pre-trained word vectors (GoogleNews-vectors-negative300.bin). They have norm 1 and are restricted only to entities appearing in the training, validation and test sets described in our paper. Available [here](https://polybox.ethz.ch/index.php/s/sH2JSB2c1OSj7yv).
 
-## Full set of annotations made by our global model
+## Full set of annotations made by one of our global models
 
-See file our_system_annotations.txt . Best to visualize together with its color scheme in a bash terminal.
+See file our_system_annotations.txt . Best to visualize together with its color scheme in a bash terminal. Contains the full set of annotations for the following datasets:
+
+```
+$ cat our_system_annotations.txt | grep 'Micro ' 
+==> AQUAINT AQUAINT ; EPOCH = 307: Micro recall = 88.03% ; Micro F1 = 89.51%	
+==> MSNBC MSNBC ; EPOCH = 307: Micro recall = 93.29% ; Micro F1 = 93.65%	
+==> ACE04 ACE04 ; EPOCH = 307: Micro recall = 84.05% ; Micro F1 = 86.92%	
+==> aida-B aida-B ; EPOCH = 307: Micro recall = 92.08% ; Micro F1 = 92.08%	
+==> aida-A aida-A ; EPOCH = 307: Micro recall = 91.00% ; Micro F1 = 91.01%	
+```
+
+Global model was trained on AIDA-train with pre-trained entity embeddings trained on Wikipedia. See details of how to run our code below.
+
 
 ## How to run the system and reproduce our results
 
