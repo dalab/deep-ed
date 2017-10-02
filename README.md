@@ -2,7 +2,7 @@
 
 [O-E. Ganea and T. Hofmann, full paper @ EMNLP 2017](https://arxiv.org/abs/1704.04920)
 
-Slides and poster can be accessed [here[(http://people.inf.ethz.ch/ganeao/).
+Slides and poster can be accessed [here](http://people.inf.ethz.ch/ganeao/).
 
 ## Pre-trained entity embeddings
 
