@@ -2,6 +2,8 @@
 
 [O-E. Ganea and T. Hofmann, full paper @ EMNLP 2017](https://arxiv.org/abs/1704.04920)
 
+Slides and poster can be accessed [here[(http://people.inf.ethz.ch/ganeao/).
+
 ## Pre-trained entity embeddings
 
 Entity embeddings trained with our method using Word2Vec 300 dimensional pre-trained word vectors (GoogleNews-vectors-negative300.bin). They have norm 1 and are restricted only to entities appearing in the training, validation and test sets described in our paper. Available [here](https://polybox.ethz.ch/index.php/s/sH2JSB2c1OSj7yv).
