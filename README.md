@@ -21,6 +21,12 @@ $ cat our_system_annotations.txt | grep 'Micro '
 
 Global model was trained on AIDA-train with pre-trained entity embeddings trained on Wikipedia. See details of how to run our code below.
 
+Detailed statistics per dataset as in table 6 of our paper can be accessed:
+
+```
+$ cat our_system_annotations.txt | grep -A20 'Micro ' 
+```
+
 
 ## How to run the system and reproduce our results
 
