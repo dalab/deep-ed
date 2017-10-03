@@ -1,6 +1,6 @@
 -- Test one single ED model trained using ed/ed.lua
 
--- Run: CUDA_VISIBLE_DEVICES=0 th ed/test/test_one_loaded_model.lua -model global -test_one_model_file ...
+-- Run: CUDA_VISIBLE_DEVICES=0 th ed/test/test_one_loaded_model.lua -root_data_dir $DATA_PATH -model global -ent_vecs_filename $ENTITY_VECS  -test_one_model_file $ED_MODEL_FILENAME
 require 'optim'
 require 'torch'
 require 'gnuplot'
