@@ -42,15 +42,15 @@ $ cat our_system_annotations.txt | grep -A20 'Micro '
 Check that each of these libraries can be imported in a torch terminal.
 
 
-3) Create a $DATA_PATH/ directoy. Create a directory $DATA_PATH/generated/ that will contain all generated files.
+3) Create a $DATA_PATH/ directoy. Create a directory $DATA_PATH/generated/ that will contain all files generated in the next steps.
 
 
 4) Download data files needed for training and testing from [this link](https://drive.google.com/uc?id=0Bx8d3azIm_ZcbHMtVmRVc1o5TWM&export=download).
- Download basic_data.zip, unzip it and place the basic_data directory in $DATA_PATH/. All generated files will be build based on files in this basic_data directory.
+ Download basic_data.zip, unzip it and place the basic_data directory in $DATA_PATH/. All generated files will be build based on files in this basic_data/ directory.
 
 
 5) Download pre-trained Word2Vec vectors GoogleNews-vectors-negative300.bin.gz from https://code.google.com/archive/p/word2vec/.
-Unzip it and place the bin file in the folder $DATA_PATH/basic_data/wordEmbeddings/Word2Vec
+Unzip it and place the bin file in the folder $DATA_PATH/basic_data/wordEmbeddings/Word2Vec.
 
 
 Now we start creating additional data files needed in our pipeline:
@@ -75,14 +75,14 @@ Now we start creating additional data files needed in our pipeline:
 ```th entities/ent_name2id_freq/e_freq_gen.lua  -root_data_dir $DATA_PATH```
 
 
-10) Generate all datasets for entity disambiguation: 
+10) Generate all entity disambiguation datasets in a CSV format needed in our training stage: 
 
 ```
 mkdir $DATA_PATH/generated/test_train_data/
 th data_gen/gen_test_train_data/gen_all.lua -root_data_dir $DATA_PATH
 ```
  
-Verify the statistics of these files as shown in the header comments of gen_ace_msnbc_aquaint_csv.lua and gen_aida_test.lua .
+Verify the statistics of these files as explained in the header comments of the files gen_ace_msnbc_aquaint_csv.lua and gen_aida_test.lua .
 
 
 11) Create training data for learning entity embeddings:
@@ -110,7 +110,7 @@ Verify the statistics of these files as shown in the header comments of gen_ace_
 
 ```th entities/relatedness/filter_wiki_hyperlink_contexts_RLTD.lua -root_data_dir $DATA_PATH```
 
-All files in the generated/ folder containing the substring "_RLTD" are restricted to this set of entities (should contain 276030 entities).
+All files in the $DATA_PATH/generated/ folder containing the substring "_RLTD" are restricted to this set of entities (should contain 276030 entities).
 
 Your $DATA_PATH/generated/ folder should now contain the files : 
 
