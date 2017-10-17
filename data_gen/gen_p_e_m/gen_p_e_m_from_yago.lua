@@ -50,7 +50,7 @@ while (line) do
     if(replace=="%") then
 	    replace="%%"
     end
-    ent_name = string.gsub(ent_name, code,replace)
+    ent_name = string.gsub(ent_name, code, replace)
   end
   
   ent_name = preprocess_ent_name(ent_name)
