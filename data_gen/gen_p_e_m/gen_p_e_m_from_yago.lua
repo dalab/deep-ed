@@ -46,7 +46,11 @@ while (line) do
     local x = ent_name:find('\\u')
     local code = ent_name:sub(x, x + 5)
     assert(unicode2ascii[code], code)
-    ent_name = string.gsub(ent_name, code, unicode2ascii[code])
+    replace = unicode2ascii[code]
+    if(replace == "%") then
+	    replace = "%%"
+    end
+    ent_name = string.gsub(ent_name, code, replace)
   end
   
   ent_name = preprocess_ent_name(ent_name)
