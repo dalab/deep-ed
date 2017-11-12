@@ -42,7 +42,7 @@ $ cat our_system_annotations.txt | grep -A20 'Micro '
 Check that each of these libraries can be imported in a torch terminal.
 
 
-3) Create a $DATA_PATH/ directoy. Create a directory $DATA_PATH/generated/ that will contain all files generated in the next steps.
+3) Create a $DATA_PATH directoy (will be assumed to end in '/' in the next steps). Create a directory $DATA_PATH/generated/ that will contain all files generated in the next steps.
 
 
 4) Download data files needed for training and testing from [this link](https://drive.google.com/uc?id=0Bx8d3azIm_ZcbHMtVmRVc1o5TWM&export=download).
