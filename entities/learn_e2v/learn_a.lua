@@ -54,7 +54,7 @@ cmd:option('-data', 'wiki-canonical-hyperlinks', 'Training data: wiki-canonical 
   'wiki-canonical-hyperlinks')
 
 -- Only when opt.data = wiki-canonical-hyperlinks
-cmd:option('-num_passes_wiki_words', 400, 'Num passes (per entity) over Wiki canonical pages before ' ..
+cmd:option('-num_passes_wiki_words', 200, 'Num passes (per entity) over Wiki canonical pages before ' ..
   'changing to using Wiki hyperlinks.')
 
 cmd:option('-hyp_ctxt_len', 10, 'Left and right context window length for hyperlinks.')
