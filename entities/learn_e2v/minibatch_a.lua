@@ -102,6 +102,7 @@ function process_one_line(line, minibatch, mb_index)
     -- Still empty ? Get some random words then.
     if num_positive_words_this_iter == 0 then
       table.insert(positive_words_in_this_iter, get_word_from_id(random_unigram_at_unig_power_w_id()))
+      num_positive_words_this_iter = num_positive_words_this_iter + 1
     end
   end
   
